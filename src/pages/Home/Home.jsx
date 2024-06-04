@@ -3,12 +3,15 @@ import Banner from "./Banner/Banner"
 import Categories from "./Categories/Categories"
 
 const Home = () => {
-    <Helmet>
-        <title>Home | Meal Lounge</title>
-    </Helmet>
+
 
     return (
         <div>
+            <Helmet>
+                <title>Meal Lounge | Home</title>
+            </Helmet>
+
+
             <Banner />
             <Categories />
         </div>

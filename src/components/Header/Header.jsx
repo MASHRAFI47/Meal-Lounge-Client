@@ -40,7 +40,7 @@ const Header = () => {
                                 </div>
                                 <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                     <p className="text-center font-bold">{user?.displayName}</p>
-                                    <li><a>Dashboard</a></li>
+                                    <li><Link to={'/dashboard'}>Dashboard</Link></li>
                                     <li onClick={logOut}><a>Logout</a></li>
                                 </ul>
                             </div>
