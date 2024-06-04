@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../../hooks/useAuth"
 import toast from "react-hot-toast"
+import axios from "axios"
 
 const Login = () => {
     const navigate = useNavigate()
@@ -18,6 +19,11 @@ const Login = () => {
             .then(result => {
                 toast.success("Sign In Successful")
                 navigate('/')
+                const user = { email }
+                axios.post('http://localhost:4000/jwt', user, {
+                    withCredentials: true
+                })
+                    .then(res => console.log(res.data))
                 console.log(result.user)
             })
     }
