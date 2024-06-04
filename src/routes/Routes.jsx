@@ -6,6 +6,7 @@ import Root from "../layouts/Root";
 import Meals from "../pages/Meals/Meals";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 
 
@@ -34,4 +35,8 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
     },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />
+    }
 ]);
