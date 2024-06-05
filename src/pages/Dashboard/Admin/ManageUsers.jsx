@@ -16,24 +16,27 @@ const ManageUsers = () => {
 
 
     return (
-        <div>
-            <h1 className="font-bold text-2xl mb-10">Users Management</h1>
-            <table className="table">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>Sl.</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        users?.map((user, index) => <UsersDataRow key={user?._id} user={user} index={index + 1} refetch={refetch} />)
-                    }
-                </tbody>
-            </table>
+        <div className="">
+            <h1 className="font-bold text-2xl mb-10 mt-10 md:mt-0">Users Management</h1>
+            
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Sl.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            users?.map((user, index) => <UsersDataRow key={user?._id} user={user} index={index + 1} refetch={refetch} />)
+                        }
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     )

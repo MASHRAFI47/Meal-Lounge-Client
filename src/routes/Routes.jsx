@@ -9,6 +9,9 @@ import Login from "../pages/Login/Login";
 import DashboardLayout from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AddMeal from "../pages/Dashboard/Admin/AddMeal";
+import AllMeals from "../pages/Dashboard/Admin/AllMeals";
+import AllReviews from "../pages/Dashboard/Admin/AllReviews";
 
 
 
@@ -44,7 +47,19 @@ export const router = createBrowserRouter([
             {
                 path: "manage-users",
                 element: <PrivateRoute><ManageUsers /></PrivateRoute>
-            }
+            },
+            {
+                path: "add-meal",
+                element: <PrivateRoute><AddMeal /></PrivateRoute>
+            },
+            {
+                path: "all-meals",
+                element: <PrivateRoute><AllMeals /></PrivateRoute>
+            },
+            {
+                path: "all-reviews",
+                element: <PrivateRoute><AllReviews /></PrivateRoute>
+            },
         ]
     }
 ]);
