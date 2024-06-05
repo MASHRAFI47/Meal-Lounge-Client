@@ -44,14 +44,15 @@ const Sidebar = () => {
             </div>
 
 
-            <button onClick={toggleDrawer} className="absolute left-[22rem] top-8"><GiHamburgerMenu /></button>
+            <button onClick={toggleDrawer} className="lg:hidden absolute left-[22rem] top-8"><GiHamburgerMenu /></button>
             <Drawer
                 open={isOpen}
                 onClose={toggleDrawer}
                 direction='right'
-                className='bla bla bla'
+                className='bg-[#CA301B]'
             >
-                <div>
+                <div className="bg-[#CA301B] min-h-screen">
+                    <Link to={'/'}><img src={logo} className="w-24 mx-auto" alt="" /></Link>
                     {role === 'admin' && <AdminMenu />}
                 </div>
             </Drawer>
