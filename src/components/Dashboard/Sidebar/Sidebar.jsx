@@ -9,7 +9,7 @@ const Sidebar = () => {
             <Link to={'/'}><img src={logo} className="w-24 mx-auto mt-2" alt="" /></Link>
             <div>
                 <ul className="menu">
-                    <li><NavLink>Add Items</NavLink></li>
+                    <li><NavLink to={'/dashboard/manage-users'}>Manage Users</NavLink></li>
                 </ul>
             </div>
 
