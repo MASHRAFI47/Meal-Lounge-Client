@@ -22,10 +22,10 @@ const ManageUsers = () => {
                 {/* head */}
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Sl.</th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Email</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>

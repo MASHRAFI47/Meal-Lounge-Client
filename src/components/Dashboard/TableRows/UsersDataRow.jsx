@@ -7,7 +7,7 @@ const UsersDataRow = ({ user, index }) => {
             <th>{index++}</th>
             <td>{user?.name}</td>
             <td>{user?.email}</td>
-            <td>Apply</td>
+            <td>{user?.role}</td>
         </tr>
     )
 }
