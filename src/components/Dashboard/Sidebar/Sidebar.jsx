@@ -3,6 +3,7 @@ import logo from '../../../assets/mealloungewhite.png'
 import useAuth from "../../../hooks/useAuth"
 import useRole from "../../../hooks/useRole";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import AdminMenu from "../Menu/AdminMenu";
 
 const Sidebar = () => {
     const { logOut } = useAuth();
@@ -15,8 +16,7 @@ const Sidebar = () => {
             <Link to={'/'}><img src={logo} className="w-24 mx-auto mt-2" alt="" /></Link>
             <div>
                 <ul className="menu">
-                    {/* <li><NavLink to={'/dashboard/manage-users'}>Manage Users</NavLink></li> */}
-                    {role === 'admin' && <li><NavLink to={'/dashboard/manage-users'}>Manage Users</NavLink></li>}
+                    {role === 'admin' && <AdminMenu />}
                 </ul>
             </div>
 
