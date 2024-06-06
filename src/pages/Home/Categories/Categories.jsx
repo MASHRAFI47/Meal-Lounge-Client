@@ -3,11 +3,32 @@ import 'react-tabs/style/react-tabs.css';
 
 import queryString from 'query-string';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosCommon from '../../../hooks/useAxiosCommon';
+import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
+import MealCard from '../../../components/Cards/MealCard';
 
 
 
 const Categories = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const axiosCommon = useAxiosCommon()
+
+    const { data: meals = [], isLoading } = useQuery({
+        queryKey: ["meals"],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get('/meals')
+            return data
+        }
+    })
+
+    if (isLoading) return <LoadingSpinner />
+
+
+    const filteredBreakfast = meals.filter(meal => meal.category == 'breakfast');
+    const filteredLunch = meals.filter(meal => meal.category == 'lunch');
+    const filteredDinner = meals.filter(meal => meal.category == 'dinner');
+
 
     const handleAllMeals = () => {
         let currentQuery = { category: "all-meals" }
@@ -38,7 +59,7 @@ const Categories = () => {
     }
 
     const handleDinner = () => {
-        let currentQuery = {category: 'dinner'};
+        let currentQuery = { category: 'dinner' };
         const url = queryString.stringifyUrl({
             url: '/',
             query: currentQuery
@@ -56,16 +77,32 @@ const Categories = () => {
             </TabList>
 
             <TabPanel>
-                <h2>Any content 1</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        meals?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                    }
+                </div>
             </TabPanel>
             <TabPanel>
-                <h2>Any content 2</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        filteredBreakfast?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                    }
+                </div>
             </TabPanel>
             <TabPanel>
-                <h2>Any content 2</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        filteredLunch?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                    }
+                </div>
             </TabPanel>
             <TabPanel>
-                <h2>Any content 2</h2>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    {
+                        filteredDinner?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                    }
+                </div>
             </TabPanel>
         </Tabs>
     )
