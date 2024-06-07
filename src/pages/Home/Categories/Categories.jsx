@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 import MealCard from '../../../components/Cards/MealCard';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 
 
@@ -68,43 +69,48 @@ const Categories = () => {
     }
 
     return (
-        <Tabs>
-            <TabList>
-                <Tab onClick={handleAllMeals}>All Meals</Tab>
-                <Tab onClick={handleBreakfast}>Breakfast</Tab>
-                <Tab onClick={handleLunch}>Lunch</Tab>
-                <Tab onClick={handleDinner}>Dinner</Tab>
-            </TabList>
+        <div className='container mx-auto mt-20'>
 
-            <TabPanel>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        meals?.map(meal => <MealCard key={meal?._id} meal={meal} />)
-                    }
-                </div>
-            </TabPanel>
-            <TabPanel>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        filteredBreakfast?.map(meal => <MealCard key={meal?._id} meal={meal} />)
-                    }
-                </div>
-            </TabPanel>
-            <TabPanel>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        filteredLunch?.map(meal => <MealCard key={meal?._id} meal={meal} />)
-                    }
-                </div>
-            </TabPanel>
-            <TabPanel>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    {
-                        filteredDinner?.map(meal => <MealCard key={meal?._id} meal={meal} />)
-                    }
-                </div>
-            </TabPanel>
-        </Tabs>
+            <SectionTitle title={"Meals"} desc={"Featuring a delightful blend of traditional and contemporary flavors"} />
+
+            <Tabs>
+                <TabList>
+                    <Tab onClick={handleAllMeals}>All Meals</Tab>
+                    <Tab onClick={handleBreakfast}>Breakfast</Tab>
+                    <Tab onClick={handleLunch}>Lunch</Tab>
+                    <Tab onClick={handleDinner}>Dinner</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                        {
+                            meals?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                        }
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                        {
+                            filteredBreakfast?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                        }
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                        {
+                            filteredLunch?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                        }
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            filteredDinner?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                        }
+                    </div>
+                </TabPanel>
+            </Tabs>
+        </div>
     )
 }
 
