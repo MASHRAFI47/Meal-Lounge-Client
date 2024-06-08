@@ -2,11 +2,13 @@
 // Learn how to accept a payment using the official Stripe docs.
 // https://stripe.com/docs/payments/accept-a-payment#web
 
+
+import PropTypes from 'prop-types';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import './CheckoutForm.css';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ membership }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -61,7 +63,7 @@ const CheckoutForm = () => {
                 }}
             />
             <button type="submit" disabled={!stripe}>
-                Pay
+                Pay ${membership?.price}
             </button>
         </form>
     );
@@ -69,5 +71,11 @@ const CheckoutForm = () => {
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
+
+
+CheckoutForm.propTypes = {
+    membership: PropTypes.object,
+}
+
 
 export default CheckoutForm
