@@ -7,14 +7,44 @@ import PropTypes from 'prop-types';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import './CheckoutForm.css';
+import { useEffect, useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
+
+import { ImSpinner2 } from "react-icons/im";
+
 
 const CheckoutForm = ({ membership }) => {
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
+
+    const [clientSecret, setClientSecret] = useState();
+    const [cardError, setCardError] = useState('')
+    const [processing, setProcessing] = useState(false)
+
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        if (membership?.price && membership?.price > 1) {
+            getClientSecret({ price: membership?.price })
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [membership?.price]);
+
+    //get client secret
+    const getClientSecret = async price => {
+        const { data } = await axiosSecure.post(`/create-payment-intent`, price)
+        console.log('client secret from server', data)
+        setClientSecret(data.clientSecret)
+    }
+
+
     const stripe = useStripe();
     const elements = useElements();
 
     const handleSubmit = async (event) => {
         // Block native form submission.
         event.preventDefault();
+        setProcessing(true)
 
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
@@ -39,33 +69,72 @@ const CheckoutForm = ({ membership }) => {
 
         if (error) {
             console.log('[error]', error);
+            setCardError(error.message)
+            return
         } else {
             console.log('[PaymentMethod]', paymentMethod);
+            setCardError();
         }
+
+        //confirm payment
+        const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    email: user?.email,
+                    name: user?.displayName
+                },
+            },
+        })
+
+        if (confirmError) {
+            console.log(confirmError.message)
+            setCardError(confirmError.message)
+            setProcessing(false)
+            return
+        }
+
+        //succeed payment
+        if (paymentIntent.status === 'succeeded') {
+            console.log(paymentIntent)
+            //create object
+            const paymentInfo = {
+                ...membership,
+                transactionId: paymentIntent.id,
+                date: new Date(),
+            }
+            console.log(paymentInfo)
+
+            setProcessing(false)
+        }
+
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+        <>
+            <form onSubmit={handleSubmit}>
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
                             },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button type="submit" disabled={!stripe}>
-                Pay ${membership?.price}
-            </button>
-        </form>
+                    }}
+                />
+                <button type="submit" disabled={!stripe || !clientSecret || processing}>
+                    {processing ? <ImSpinner2 size={24} className='animate-spin m-auto' /> : `Pay ${membership?.price}`}
+                </button>
+            </form>
+            {cardError && <p className='text-red-600 ml-8'>{cardError}</p>}
+        </>
     );
 };
 
