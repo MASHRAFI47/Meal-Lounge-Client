@@ -2,13 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import AllMealsDataRow from '../../../components/Dashboard/TableRows/AllMealsDataRow';
 import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
+import useAuth from '../../../hooks/useAuth';
 
 
 const AllMeals = () => {
+  const { user } = useAuth()
   const axiosSecure = useAxiosSecure()
 
   const { data: meals = [], isLoading, refetch } = useQuery({
-    queryKey: ['meals'],
+    queryKey: ['meals', user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get('/meals')
       return data

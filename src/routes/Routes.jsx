@@ -14,6 +14,7 @@ import AllMeals from "../pages/Dashboard/Admin/AllMeals";
 import AllReviews from "../pages/Dashboard/Admin/AllReviews";
 import MealDetails from "../components/MealDetails/MealDetails";
 import Checkout from "../pages/Checkout/Checkout";
+import UpdateMeal from "../pages/UpdateMeal/UpdateMeal";
 
 
 
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
     {
         path: "/checkout/:package",
         element: <Checkout />,
+    },
+    {
+        path: "/update-meal/:id",
+        element: <PrivateRoute><UpdateMeal /></PrivateRoute>
     },
     {
         path: "/dashboard",
