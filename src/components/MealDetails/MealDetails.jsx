@@ -30,7 +30,7 @@ const MealDetails = () => {
         <div className="relative top-40">
             <div className="container mx-auto mb-10">
                 <div className="">
-                    <div className="space-y-2 my-5">
+                    <div className="space-y-2 mb-5">
                         <h1 className="text-3xl"><span className="font-bold">Item:</span> {meal?.title}</h1>
                         <h1 className="text-2xl"><span className="font-semibold">Description:</span> {meal?.description}</h1>
                         <h3 className="text-2xl font-semibold text-red-600"><span>Price:</span> ${meal?.price}</h3>
