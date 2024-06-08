@@ -1,8 +1,53 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+//icons
+import { FaRegTrashCan } from "react-icons/fa6";
+import { BsPencilSquare } from "react-icons/bs";
 
-const AllMealsDataRow = ({ meal }) => {
+import Swal from 'sweetalert2';
+import { useMutation } from '@tanstack/react-query';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+
+
+const AllMealsDataRow = ({ meal, refetch }) => {
+    const axiosSecure = useAxiosSecure()
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (mealId) => {
+            const { data } = await axiosSecure.delete(`/meal/${mealId}`)
+            return data
+        },
+        onSuccess: (data) => {
+            console.log(data)
+            refetch()
+        }
+    })
+
+    const handleDelete = (mealId) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(mealId)
+
+                mutateAsync(mealId)
+
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+    }
+
     return (
         <tr>
             <td>
@@ -24,10 +69,10 @@ const AllMealsDataRow = ({ meal }) => {
                 {/* <br />
                 <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
             </td>
-            <th>
-                <button className="btn btn-xs">Update</button>
-                <button className="btn btn-xs">Delete</button>
-                <Link to={`/meal-details/${meal?._id}`}>View</Link>
+            <th className='space-x-2'>
+                <button className="btn btn-sm bg-green-600 hover:bg-green-500 text-white"><BsPencilSquare /></button>
+                <button className="btn btn-sm bg-red-600 hover:bg-red-500 text-white" onClick={() => handleDelete(meal?._id)}><FaRegTrashCan /></button>
+                <Link to={`/meal-details/${meal?._id}`} className='btn btn-sm text-white relative bottom-[2px] btn-primary'>View</Link>
             </th>
         </tr>
     )
@@ -35,6 +80,7 @@ const AllMealsDataRow = ({ meal }) => {
 
 AllMealsDataRow.propTypes = {
     meal: PropTypes.object,
+    refetch: PropTypes.func,
 }
 
 

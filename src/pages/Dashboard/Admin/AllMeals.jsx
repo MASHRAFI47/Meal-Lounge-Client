@@ -7,7 +7,7 @@ import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 const AllMeals = () => {
   const axiosSecure = useAxiosSecure()
 
-  const { data: meals = [], isLoading } = useQuery({
+  const { data: meals = [], isLoading, refetch } = useQuery({
     queryKey: ['meals'],
     queryFn: async () => {
       const { data } = await axiosSecure.get('/meals')
@@ -33,7 +33,7 @@ const AllMeals = () => {
           <tbody>
             {/* row 1 */}
             {
-              meals?.map(meal => <AllMealsDataRow key={meal._id} meal={meal} />)
+              meals?.map(meal => <AllMealsDataRow key={meal._id} meal={meal} refetch={refetch} />)
             }
           </tbody>
         </table>
