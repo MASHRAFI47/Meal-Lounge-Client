@@ -9,3 +9,9 @@
 body {
     overflow-x: hidden;
 }
+
+
+.StripeElement, .StripeElementIdeal, .StripeElementP24, .StripeElementEPS, .StripeElementFpx {
+    width: 100%;
+    margin: 0 auto;
+}

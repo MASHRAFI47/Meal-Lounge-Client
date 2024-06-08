@@ -13,6 +13,7 @@ import AddMeal from "../pages/Dashboard/Admin/AddMeal";
 import AllMeals from "../pages/Dashboard/Admin/AllMeals";
 import AllReviews from "../pages/Dashboard/Admin/AllReviews";
 import MealDetails from "../components/MealDetails/MealDetails";
+import Checkout from "../pages/Checkout/Checkout";
 
 
 
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/checkout/:package",
+        element: <Checkout />,
     },
     {
         path: "/dashboard",
