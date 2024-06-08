@@ -12,6 +12,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AddMeal from "../pages/Dashboard/Admin/AddMeal";
 import AllMeals from "../pages/Dashboard/Admin/AllMeals";
 import AllReviews from "../pages/Dashboard/Admin/AllReviews";
+import MealDetails from "../components/MealDetails/MealDetails";
 
 
 
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
             {
                 path: "/meals",
                 element: <Meals />,
+            },
+            {
+                path: "/meal-details/:id",
+                element: <MealDetails />,
             },
 
         ]

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 const AllMealsDataRow = ({ meal }) => {
@@ -26,7 +27,7 @@ const AllMealsDataRow = ({ meal }) => {
             <th>
                 <button className="btn btn-xs">Update</button>
                 <button className="btn btn-xs">Delete</button>
-                <button className="btn btn-xs">View</button>
+                <Link to={`/meal-details/${meal?._id}`}>View</Link>
             </th>
         </tr>
     )
