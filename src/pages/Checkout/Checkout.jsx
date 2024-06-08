@@ -13,6 +13,8 @@ const Checkout = () => {
     const axiosSecure = useAxiosSecure();
     const pack = useParams();
 
+    console.log(pack.package)
+
     const { data: membership = [], isLoading } = useQuery({
         queryKey: ['membership'],
         queryFn: async () => {
@@ -27,11 +29,22 @@ const Checkout = () => {
 
     return (
         <div>
-            <div className='bg-white text-center py-10 w-96'>
-                <Elements stripe={stripePromise}>
-                    {/* checkout form */}
-                    <CheckoutForm membership={membership} />
-                </Elements>
+            <div className='text-center py-10'>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 border py-20 mx-auto">
+                    <div className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Package</span>
+                            </label>
+                            <input type="text" placeholder="package" className="input input-bordered" value={membership?.packageName} readOnly />
+                        </div>
+                    </div>
+                    <Elements stripe={stripePromise}>
+                        {/* checkout form */}
+                        <CheckoutForm membership={membership} />
+                    </Elements>
+                </div>
+
             </div>
         </div>
     )

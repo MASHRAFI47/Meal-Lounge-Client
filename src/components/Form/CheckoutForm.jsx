@@ -12,9 +12,12 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 
 import { ImSpinner2 } from "react-icons/im";
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const CheckoutForm = ({ membership }) => {
+    const navigate = useNavigate()
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
 
@@ -68,7 +71,7 @@ const CheckoutForm = ({ membership }) => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            console.log('[error]', error.message);
             setCardError(error.message)
             return
         } else {
@@ -100,12 +103,21 @@ const CheckoutForm = ({ membership }) => {
             //create object
             const paymentInfo = {
                 ...membership,
+                email: user?.email,
                 transactionId: paymentIntent.id,
                 date: new Date(),
             }
             console.log(paymentInfo)
 
+            try {
+                await axiosSecure.post('/subscribers', paymentInfo)
+            } catch (error) {
+                console.log(error.message)
+            }
+
             setProcessing(false)
+            toast.success("Subscribed Successfully")
+            navigate('/')
         }
 
     };
@@ -129,7 +141,7 @@ const CheckoutForm = ({ membership }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button type="submit" className='btn bg-[#CA301B] hover:bg-[#ff3535] text-white' disabled={!stripe || !clientSecret || processing}>
                     {processing ? <ImSpinner2 size={24} className='animate-spin m-auto' /> : `Pay ${membership?.price}`}
                 </button>
             </form>
