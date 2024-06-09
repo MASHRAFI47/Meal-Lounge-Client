@@ -14,9 +14,14 @@ import useAuth from '../../hooks/useAuth';
 import { ImSpinner2 } from "react-icons/im";
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 
 const CheckoutForm = ({ membership }) => {
+
+
+
+    const pack = membership?.packageName;
     const navigate = useNavigate()
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
@@ -24,6 +29,28 @@ const CheckoutForm = ({ membership }) => {
     const [clientSecret, setClientSecret] = useState();
     const [cardError, setCardError] = useState('')
     const [processing, setProcessing] = useState(false)
+
+    //user single logged in data fetch
+    const { data: userData = [] } = useQuery({
+        queryKey: ['userData', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/user/${user?.email}`)
+            return data
+        }
+    })
+    console.log(userData)
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async (id) => {
+            const { data } = await axiosSecure.patch(`/users/${id}`, { membership: pack })
+            return data
+        },
+        onSuccess: (data) => {
+            console.log(data)
+        }
+    })
+
+
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -85,7 +112,7 @@ const CheckoutForm = ({ membership }) => {
                 card: card,
                 billing_details: {
                     email: user?.email,
-                    name: user?.displayName
+                    name: user?.displayName,
                 },
             },
         })
@@ -103,14 +130,30 @@ const CheckoutForm = ({ membership }) => {
             //create object
             const paymentInfo = {
                 ...membership,
+                userID: membership?._id,
                 email: user?.email,
                 transactionId: paymentIntent.id,
                 date: new Date(),
             }
+            delete paymentInfo._id
             console.log(paymentInfo)
 
             try {
+                //post in subscribers
                 await axiosSecure.post('/subscribers', paymentInfo)
+
+                //save membership status to users
+                // const currentUser = {
+                //     email: user?.email,
+                //     name: user?.displayName,
+                //     role: userData?.role,
+                //     status: userData?.status,
+                //     timestamp: userData?.timestamp,
+                //     membership: pack
+                // }
+                // await axiosSecure.patch(`/users/${userData?._id}`, { ...userData, membership: pack })
+                mutateAsync(userData?._id)
+
             } catch (error) {
                 console.log(error.message)
             }
