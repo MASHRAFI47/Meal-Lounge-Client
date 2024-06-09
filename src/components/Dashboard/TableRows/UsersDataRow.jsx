@@ -17,6 +17,7 @@ const UsersDataRow = ({ user, index, refetch }) => {
         }
     })
 
+
     const handleAdminRequest = (userId) => {
         Swal.fire({
             title: "Are you sure?",
@@ -28,15 +29,14 @@ const UsersDataRow = ({ user, index, refetch }) => {
             confirmButtonText: "Yes, change role!"
         }).then((result) => {
             if (result.isConfirmed) {
-
                 mutateAsync(userId)
-
                 Swal.fire({
                     title: "Role Changed!",
                     icon: "success"
                 });
             }
         });
+
 
     }
     return (

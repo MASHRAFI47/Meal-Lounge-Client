@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const GuestMenu = () => {
     return (
         <div>
             <ul className="menu space-y-3">
-                <li><NavLink className={'font-bold'} to={'/dashboard/my-profile'}>My Profile</NavLink></li>
+                <li><Link className={'font-bold'} to={'/dashboard'}>My Profile</Link></li>
                 <li><NavLink className={'font-bold'} to={'/dashboard/requested-meals'}>Requested Meals</NavLink></li>
                 <li><NavLink className={'font-bold'} to={'/dashboard/my-reviews'}>My Reviews</NavLink></li>
                 <li><NavLink className={'font-bold'} to={'/dashboard/payment-history'}>Payment History</NavLink></li>

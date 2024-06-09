@@ -1,8 +1,8 @@
 
 const RequestedMeals = () => {
-  return (
-    <div>RequestedMeals</div>
-  )
+    return (
+        <div>RequestedMeals</div>
+    )
 }
 
 export default RequestedMeals
