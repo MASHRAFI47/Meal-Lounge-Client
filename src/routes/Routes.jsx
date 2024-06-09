@@ -16,7 +16,7 @@ import MealDetails from "../components/MealDetails/MealDetails";
 import Checkout from "../pages/Checkout/Checkout";
 import UpdateMeal from "../pages/UpdateMeal/UpdateMeal";
 import ServeMeals from "../pages/Dashboard/Admin/ServeMeals";
-import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals";
+import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
 import MyProfile from "../pages/Dashboard/Guest/MyProfile";
 import RequestedMeals from "../pages/Dashboard/Guest/RequestedMeals";
 import MyReviews from "../pages/Dashboard/Guest/MyReviews";
