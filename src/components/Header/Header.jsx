@@ -8,6 +8,7 @@ const Header = () => {
     const links = <>
         <li><NavLink to={'/'} className={'font-bold text-white'}>Home</NavLink></li>
         <li><NavLink to={'/meals'} className={'font-bold text-white'}>Meals</NavLink></li>
+        <li><NavLink to={'/upcoming-meals'} className={'font-bold text-white'}>Upcoming</NavLink></li>
     </>
     return (
         <div className="">

@@ -14,7 +14,6 @@ const Membership = () => {
         }
     })
 
-    console.log(memberships)
 
     return (
         <div className="container mx-auto mt-20">

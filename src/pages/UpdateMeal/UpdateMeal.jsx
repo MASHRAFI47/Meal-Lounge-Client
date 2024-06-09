@@ -128,7 +128,7 @@ const UpdateMeal = () => {
                                 <label className="label">
                                     <span className="label-text">Price*</span>
                                 </label>
-                                <input type="text" placeholder="price" className="input input-bordered" defaultValue={meal?.price} {...register("price", { required: true })} />
+                                <input type="number" placeholder="price" className="input input-bordered" defaultValue={meal?.price} {...register("price", { required: true })} />
                                 {errors.price && <span className='text-red-600'>This field is required</span>}
                             </div>
                         </div>
@@ -156,7 +156,7 @@ const UpdateMeal = () => {
                                 <label className="label">
                                     <span className="label-text">Likes*</span>
                                 </label>
-                                <input type="text" placeholder="likes" className="input input-bordered" defaultValue={meal?.likes} {...register("likes", { required: true })} />
+                                <input type="number" placeholder="likes" className="input input-bordered" defaultValue={meal?.likes} {...register("likes", { required: true })} />
                                 {errors.likes && <span className='text-red-600'>This field is required</span>}
                             </div>
                         </div>
@@ -193,7 +193,7 @@ const UpdateMeal = () => {
 
 
                     <div className="form-control mt-6">
-                        <button className="btn bg-[#CA301B] hover:bg-[#ff3535] text-white">Add</button>
+                        <button className="btn bg-[#CA301B] hover:bg-[#ff3535] text-white">Update</button>
                     </div>
                 </form>
             </div>

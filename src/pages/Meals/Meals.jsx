@@ -15,7 +15,12 @@ const Meals = () => {
         }
     })
 
-    if(isLoading) return <LoadingSpinner />
+
+    //meals greater than 10 likes
+    const filteredMeals = meals.filter(meal => meal.likes > 10);
+
+
+    if (isLoading) return <LoadingSpinner />
 
     return (
         <div className="container mx-auto">
@@ -25,7 +30,7 @@ const Meals = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative top-40">
                 {
-                    meals.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                    filteredMeals.map(meal => <MealCard key={meal?._id} meal={meal} />)
                 }
             </div>
         </div>

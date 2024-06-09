@@ -133,7 +133,7 @@ const AddMeal = () => {
                 <label className="label">
                   <span className="label-text">Price*</span>
                 </label>
-                <input type="text" placeholder="price" className="input input-bordered" {...register("price", { required: true })} />
+                <input type="number" placeholder="price" className="input input-bordered" {...register("price", { required: true })} />
                 {errors.price && <span className='text-red-600'>This field is required</span>}
               </div>
             </div>
@@ -161,7 +161,7 @@ const AddMeal = () => {
                 <label className="label">
                   <span className="label-text">Likes*</span>
                 </label>
-                <input type="text" placeholder="likes" className="input input-bordered" {...register("likes", { required: true })} />
+                <input type="number" placeholder="likes" className="input input-bordered" {...register("likes", { required: true })} />
                 {errors.likes && <span className='text-red-600'>This field is required</span>}
               </div>
             </div>

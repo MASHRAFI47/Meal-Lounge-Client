@@ -31,6 +31,13 @@ const Categories = () => {
     const filteredDinner = meals.filter(meal => meal.category == 'dinner');
 
 
+    //filter by likes
+    const filteredLikeMeals = meals.filter(meal => meal.likes > 10);
+    const filteredLikeBreakfast = filteredBreakfast.filter(meal => meal.likes > 10);
+    const filteredLikeLunch = filteredLunch.filter(meal => meal.likes > 10);
+    const filteredLikeDinner = filteredDinner.filter(meal => meal.likes > 10);
+
+
     const handleAllMeals = () => {
         let currentQuery = { category: "all-meals" }
         const url = queryString.stringifyUrl({
@@ -84,28 +91,28 @@ const Categories = () => {
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {
-                            meals?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                            filteredLikeMeals?.map(meal => <MealCard key={meal?._id} meal={meal} />)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {
-                            filteredBreakfast?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                            filteredLikeBreakfast?.map(meal => <MealCard key={meal?._id} meal={meal} />)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {
-                            filteredLunch?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                            filteredLikeLunch?.map(meal => <MealCard key={meal?._id} meal={meal} />)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                         {
-                            filteredDinner?.map(meal => <MealCard key={meal?._id} meal={meal} />)
+                            filteredLikeDinner?.map(meal => <MealCard key={meal?._id} meal={meal} />)
                         }
                     </div>
                 </TabPanel>
