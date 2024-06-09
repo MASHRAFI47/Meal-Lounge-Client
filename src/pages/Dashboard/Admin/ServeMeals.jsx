@@ -8,7 +8,7 @@ const ServeMeals = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure()
 
-  const { data: reqMeals = [], isLoading } = useQuery({
+  const { data: reqMeals = [], isLoading, refetch } = useQuery({
     queryKey: ['reqMeal', user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/requests/requested`)
@@ -37,7 +37,7 @@ const ServeMeals = () => {
             <tbody>
               {/* row 1 */}
               {
-                reqMeals.map((meal, index) => <ServeMealsDataRow key={meal?._id} index={index + 1} meal={meal} />)
+                reqMeals.map((meal, index) => <ServeMealsDataRow key={meal?._id} index={index + 1} meal={meal} refetch={refetch} />)
               }
             </tbody>
           </table>
