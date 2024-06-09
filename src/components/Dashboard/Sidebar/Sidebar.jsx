@@ -16,6 +16,7 @@ import Drawer from 'react-modern-drawer'
 //import styles 👇
 import 'react-modern-drawer/dist/index.css'
 import { useState } from "react";
+import GuestMenu from "../Menu/GuestMenu";
 
 const Sidebar = () => {
     const { logOut } = useAuth();
@@ -34,6 +35,7 @@ const Sidebar = () => {
                 <Link to={'/'}><img src={logo} className="w-24 mx-auto mt-2" alt="" /></Link>
                 <div className="mt-5">
                     {role === 'admin' && <AdminMenu />}
+                    {role === 'guest' && <GuestMenu />}
                 </div>
 
                 <div className="absolute bottom-10 left-5">

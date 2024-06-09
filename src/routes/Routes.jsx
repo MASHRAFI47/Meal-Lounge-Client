@@ -17,6 +17,10 @@ import Checkout from "../pages/Checkout/Checkout";
 import UpdateMeal from "../pages/UpdateMeal/UpdateMeal";
 import ServeMeals from "../pages/Dashboard/Admin/ServeMeals";
 import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals";
+import MyProfile from "../pages/Dashboard/Guest/MyProfile";
+import RequestedMeals from "../pages/Dashboard/Guest/RequestedMeals";
+import MyReviews from "../pages/Dashboard/Guest/MyReviews";
+import PaymentHistory from "../pages/Dashboard/Guest/PaymentHistory";
 
 
 
@@ -84,6 +88,23 @@ export const router = createBrowserRouter([
             {
                 path: "upcoming-meals",
                 element: <PrivateRoute><UpcomingMeals /></PrivateRoute>
+            },
+            {
+                index: true,
+                path: "my-profile",
+                element: <PrivateRoute><MyProfile /></PrivateRoute>
+            },
+            {
+                path: "requested-meals",
+                element: <PrivateRoute><RequestedMeals /></PrivateRoute>
+            },
+            {
+                path: "my-reviews",
+                element: <PrivateRoute><MyReviews /></PrivateRoute>
+            },
+            {
+                path: "payment-history",
+                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
             },
         ]
     }
