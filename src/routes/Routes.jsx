@@ -15,6 +15,8 @@ import AllReviews from "../pages/Dashboard/Admin/AllReviews";
 import MealDetails from "../components/MealDetails/MealDetails";
 import Checkout from "../pages/Checkout/Checkout";
 import UpdateMeal from "../pages/UpdateMeal/UpdateMeal";
+import ServeMeals from "../pages/Dashboard/Admin/ServeMeals";
+import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals";
 
 
 
@@ -74,6 +76,14 @@ export const router = createBrowserRouter([
             {
                 path: "all-reviews",
                 element: <PrivateRoute><AllReviews /></PrivateRoute>
+            },
+            {
+                path: "serve-meals",
+                element: <PrivateRoute><ServeMeals /></PrivateRoute>
+            },
+            {
+                path: "upcoming-meals",
+                element: <PrivateRoute><UpcomingMeals /></PrivateRoute>
             },
         ]
     }

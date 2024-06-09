@@ -8,6 +8,8 @@ const AdminMenu = () => {
                 <li><NavLink className={'font-bold'} to={'/dashboard/add-meal'}>Add Meal</NavLink></li>
                 <li><NavLink className={'font-bold'} to={'/dashboard/all-meals'}>All Meals</NavLink></li>
                 <li><NavLink className={'font-bold'} to={'/dashboard/all-reviews'}>All Reviews</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/serve-meals'}>Serve Meals</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/upcoming-meals'}>Upcoming Meals</NavLink></li>
             </ul>
 
             <label className="cursor-pointer grid place-items-center">
