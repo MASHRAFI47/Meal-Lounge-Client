@@ -143,7 +143,7 @@ const UpcomingMealsAdmin = () => {
                                             <label className="label">
                                                 <span className="label-text">Price*</span>
                                             </label>
-                                            <input type="number" placeholder="price" className="input input-bordered" {...register("price", { required: true })} />
+                                            <input step="any" type="number" placeholder="price" className="input input-bordered" {...register("price", { required: true })} />
                                             {errors.price && <span className='text-red-600'>This field is required</span>}
                                         </div>
                                     </div>
