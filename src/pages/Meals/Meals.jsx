@@ -4,8 +4,19 @@ import useAxiosCommon from "../../hooks/useAxiosCommon"
 import MealCard from "../../components/Cards/MealCard"
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner"
 
+
+// const getArticles = async ({ pageParam = 0 }) => {
+//     const res = await fetch(`http://localhost:4000/meals?limit=4&offset=${pageParam}`);
+//     const data = await res.json();
+
+//     return { ...data, prevOffset: pageParam }
+// }
+
+
+
 const Meals = () => {
     const axiosCommon = useAxiosCommon()
+
 
     const { data: meals = [], isLoading } = useQuery({
         queryKey: ["meals"],
@@ -14,6 +25,26 @@ const Meals = () => {
             return data
         }
     })
+
+
+    // const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    //     queryKey: ['mealsData'],
+    //     queryFn: getArticles,
+    //     getNextPageParam: (lastPage) => {
+    //         if (lastPage.prevOffset + 10 > lastPage.articlesCount) {
+    //             return false
+    //         }
+    //         return lastPage.prevOffset + 10
+    //     }
+    // })
+
+    // console.log(data)
+
+    // const articles = data?.pages.reduce((acc, page) => {
+    //     return [...acc, ...page.articles]
+    // }, [])
+    // console.log(articles)
+
 
 
     //meals greater than 10 likes

@@ -36,7 +36,10 @@ const PaymentHistory = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            filteredMeal?.map((meal, index) => <PaymentDataRow key={meal?._id} index={index + 1} meal={meal} refetch={refetch} />)
+                           filteredMeal.length > 0 ? 
+                           filteredMeal?.map((meal, index) => <PaymentDataRow key={meal?._id} index={index + 1} meal={meal} refetch={refetch} />)
+                           :
+                           <span className="font-bold text-2xl">No Payment History yet</span>
                         }
                     </tbody>
                 </table>

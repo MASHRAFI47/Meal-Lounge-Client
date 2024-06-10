@@ -36,11 +36,11 @@ const AllMeals = () => {
 
 
   //workkk
-  const handleSortByReviews = () => {
-    const sortedMeals = [...meals].sort((a, b) => parseFloat(a.likes) > parseFloat(b.likes) ? 1 : -1);
-    setSortMeal(sortedMeals)
-    setSorted(true)
-  }
+  // const handleSortByReviews = () => {
+  //   const sortedMeals = [...meals].sort((a, b) => parseFloat(a.likes) > parseFloat(b.likes) ? 1 : -1);
+  //   setSortMeal(sortedMeals)
+  //   setSorted(true)
+  // }
 
 
 
@@ -54,7 +54,7 @@ const AllMeals = () => {
         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li onClick={handleSortByPrice}><a>Sort by price</a></li>
           <li onClick={handleSortByLikes}><a>Sort by likes</a></li>
-          <li onClick={handleSortByReviews}><a>Sort by reviews</a></li>
+          {/* <li onClick={handleSortByReviews}><a>Sort by reviews</a></li> */}
         </ul>
       </div>
 

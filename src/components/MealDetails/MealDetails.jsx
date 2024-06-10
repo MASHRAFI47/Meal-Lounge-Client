@@ -11,14 +11,18 @@ import star from '../../assets/images/star.png'
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
 
 const MealDetails = () => {
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+
     const { user, loading } = useAuth()
     const { id } = useParams();
     const axiosCommon = useAxiosCommon();
 
     // eslint-disable-next-line no-unused-vars
-    const { data: meal = {}, isLoading, refetch } = useQuery({
+    const { data: meal = {}, isLoading } = useQuery({
         queryKey: ['meal', user?.email],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/meal/${id}`)
@@ -46,7 +50,47 @@ const MealDetails = () => {
         }
     })
 
+
+    //load all reviews 
+    const { data: reviews = [], refetch } = useQuery({
+        queryKey: ['reviews', user?.email],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get('/reviews')
+            return data
+        }
+    })
+    console.log(reviews)
+
+    //review submit
+
+    const onSubmit = data => {
+        // eslint-disable-next-line no-unused-vars
+        const { _id, ...destUser } = userInfo;
+        // eslint-disable-next-line no-unused-vars
+        const { _id: uid, ...destMeal } = meal
+        fetch(`http://localhost:4000/reviews`, {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ ...data, ...destMeal, ...destUser, mealId: uid })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                reset()
+                refetch()
+            })
+    }
+
+
+
     if (isLoading || loading) return <LoadingSpinner />
+
+
+    const filteredReview = reviews.filter(review => review.mealId == id);
+    console.log(filteredReview)
 
 
 
@@ -102,7 +146,26 @@ const MealDetails = () => {
                 </div>
 
                 <div className="mt-10">
-                    <p className="text-xl"> <span className="font-semibold">Reviews:</span> {meal?.reviews}</p>
+                    <p className="text-xl"> <span className="font-semibold">Reviews:</span> </p>
+
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <textarea className="textarea textarea-bordered w-full mt-2" placeholder="Write a review..." {...register("review", { required: true })}></textarea>
+                        {errors.review && <span className="text-red-600">This field is required</span>}
+
+                        <div className="form-control mt-6">
+                            <button className="btn btn-success">Add</button>
+                        </div>
+                    </form>
+
+                    {
+                        filteredReview.map(review => <div key={review?._id}>
+                            <div className="my-5">
+                                <p className="font-bold text-purple-600 text-xl">{review?.name}</p>
+                                <p className="text-xl">{review?.review}</p>
+                            </div>
+                        </div>)
+                    }
                 </div>
             </div>
         </div>
