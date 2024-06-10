@@ -32,10 +32,10 @@ const Categories = () => {
 
 
     //filter by likes
-    const filteredLikeMeals = meals.filter(meal => meal.likes > 10);
-    const filteredLikeBreakfast = filteredBreakfast.filter(meal => meal.likes > 10);
-    const filteredLikeLunch = filteredLunch.filter(meal => meal.likes > 10);
-    const filteredLikeDinner = filteredDinner.filter(meal => meal.likes > 10);
+    const filteredLikeMeals = meals.filter(meal => meal.likes >= 10);
+    const filteredLikeBreakfast = filteredBreakfast.filter(meal => meal.likes >= 10);
+    const filteredLikeLunch = filteredLunch.filter(meal => meal.likes >= 10);
+    const filteredLikeDinner = filteredDinner.filter(meal => meal.likes >= 10);
 
 
     const handleAllMeals = () => {

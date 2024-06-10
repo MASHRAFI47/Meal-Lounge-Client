@@ -1,16 +1,26 @@
 import { Link, NavLink } from "react-router-dom"
 
+//icons
+import { CgProfile } from "react-icons/cg";
+import { MdOutlineManageAccounts } from "react-icons/md";
+import { FaCartPlus } from "react-icons/fa6";
+import { GiHotMeal } from "react-icons/gi";
+import { MdOutlineRateReview } from "react-icons/md";
+import { RiTakeawayLine } from "react-icons/ri";
+import { MdOutlineUpcoming } from "react-icons/md";
+
+
 const AdminMenu = () => {
     return (
         <div>
             <ul className="menu space-y-3">
-                <li><Link className="font-bold" to={'/dashboard'}>My Profile</Link></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/manage-users'}>Manage Users</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/add-meal'}>Add Meal</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/all-meals'}>All Meals</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/all-reviews'}>All Reviews</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/serve-meals'}>Serve Meals</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/upcoming-meals'}>Upcoming Meals</NavLink></li>
+                <li><Link className="font-bold" to={'/dashboard'}><CgProfile size={20} /> My Profile</Link></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/manage-users'}><MdOutlineManageAccounts size={20} />Manage Users</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/add-meal'}><FaCartPlus size={20} />Add Meal</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/all-meals'}><GiHotMeal size={20} />All Meals</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/all-reviews'}><MdOutlineRateReview size={20} />All Reviews</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/serve-meals'}><RiTakeawayLine size={20} />Serve Meals</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/upcoming-meals-admin'}><MdOutlineUpcoming size={20} />Upcoming Meals</NavLink></li>
             </ul>
 
             <label className="cursor-pointer grid place-items-center">

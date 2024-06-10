@@ -21,6 +21,9 @@ import MyProfile from "../pages/Dashboard/Guest/MyProfile";
 import RequestedMeals from "../pages/Dashboard/Guest/RequestedMeals";
 import MyReviews from "../pages/Dashboard/Guest/MyReviews";
 import PaymentHistory from "../pages/Dashboard/Guest/PaymentHistory";
+import Membership from "../pages/Home/Membership/Membership";
+import UpcomingMealsAdmin from "../pages/Dashboard/Admin/UpcomingMealsAdmin";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 
@@ -28,7 +31,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
-        errorElement: <div>Error 404</div>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
@@ -46,7 +49,10 @@ export const router = createBrowserRouter([
                 path: "/upcoming-meals",
                 element: <UpcomingMeals />,
             },
-
+            {
+                path: "/checkout",
+                element: <Membership />,
+            },
         ]
     },
     {
@@ -108,6 +114,10 @@ export const router = createBrowserRouter([
             {
                 path: "payment-history",
                 element: <PrivateRoute><PaymentHistory /></PrivateRoute>
+            },
+            {
+                path: "upcoming-meals-admin",
+                element: <PrivateRoute><UpcomingMealsAdmin /></PrivateRoute>
             },
         ]
     }

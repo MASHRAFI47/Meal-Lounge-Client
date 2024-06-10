@@ -17,7 +17,7 @@ const Meals = () => {
 
 
     //meals greater than 10 likes
-    const filteredMeals = meals.filter(meal => meal.likes > 10);
+    const filteredMeals = meals.filter(meal => meal.likes >= 10);
 
 
     if (isLoading) return <LoadingSpinner />

@@ -7,7 +7,7 @@ const MembershipCard = ({ membership }) => {
 
     return (
         <div>
-            <div className="card md:w-96 bg-base-100 shadow-xl border mt-10">
+            <div className="card lg:w-96 bg-base-100 shadow-xl border mt-10">
                 <div className=" flex flex-col justify-evenly items-center h-96">
                     <h2 className="card-title mx-auto font-bold text-3xl">{membership?.packageName}</h2>
                     <p className={`text-center font-bold text-2xl ${membership?.packageName == "silver" ? "text-purple-600" : membership?.packageName == "gold" ? "text-green-600" : "text-red-600"}`}>${membership?.price}</p>
