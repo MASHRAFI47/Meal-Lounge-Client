@@ -1,13 +1,18 @@
 import { Link, NavLink } from "react-router-dom"
+import { CgProfile } from "react-icons/cg";
+import { GiHotMeal } from "react-icons/gi";
+import { MdOutlineRateReview } from "react-icons/md";
+import { BsCashCoin } from "react-icons/bs";
+
 
 const GuestMenu = () => {
     return (
         <div>
             <ul className="menu space-y-3">
-                <li><Link className={'font-bold'} to={'/dashboard'}>My Profile</Link></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/requested-meals'}>Requested Meals</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/my-reviews'}>My Reviews</NavLink></li>
-                <li><NavLink className={'font-bold'} to={'/dashboard/payment-history'}>Payment History</NavLink></li>
+                <li><Link className={'font-bold'} to={'/dashboard'}><CgProfile size={20} />My Profile</Link></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/requested-meals'}><GiHotMeal size={20} />Requested Meals</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/my-reviews'}><MdOutlineRateReview  size={20}/>My Reviews</NavLink></li>
+                <li><NavLink className={'font-bold'} to={'/dashboard/payment-history'}><BsCashCoin size={20} />Payment History</NavLink></li>
             </ul>
 
             <label className="cursor-pointer grid place-items-center">

@@ -5,6 +5,7 @@ import UpcomingMealsAdminRow from "../../../components/Dashboard/TableRows/Upcom
 import { imageUpload } from "../../../hooks/imageUpload"
 import { useForm } from "react-hook-form"
 import useAuth from "../../../hooks/useAuth"
+import toast from "react-hot-toast"
 
 const UpcomingMealsAdmin = () => {
     const axiosCommon = useAxiosCommon()
@@ -12,12 +13,13 @@ const UpcomingMealsAdmin = () => {
     const { user } = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async data => {
-        const { image } = data;
+        const { image, likes } = data;
         const pic = image[0];
-
+        const likeInt = parseInt(likes)
+        
         const imageUrl = await imageUpload(pic)
 
-        const mealData = { ...data, image: imageUrl }
+        const mealData = { ...data, image: imageUrl, likes: likeInt }
 
         fetch(`http://localhost:4000/meals`, {
             credentials: 'include',
@@ -30,6 +32,7 @@ const UpcomingMealsAdmin = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success("Upcoming Meal added successfully")
             })
     }
 

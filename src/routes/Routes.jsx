@@ -24,6 +24,7 @@ import PaymentHistory from "../pages/Dashboard/Guest/PaymentHistory";
 import Membership from "../pages/Home/Membership/Membership";
 import UpcomingMealsAdmin from "../pages/Dashboard/Admin/UpcomingMealsAdmin";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/meal-details/:id",
-                element: <MealDetails />,
+                element: <PrivateRoute><MealDetails /></PrivateRoute>,
             },
             {
                 path: "/upcoming-meals",
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/checkout",
-                element: <Membership />,
+                element: <PrivateRoute><Membership /></PrivateRoute>,
             },
         ]
     },
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/update-meal/:id",
-        element: <PrivateRoute><UpdateMeal /></PrivateRoute>
+        element: <AdminRoute><UpdateMeal /></AdminRoute>
     },
     {
         path: "/dashboard",
@@ -77,27 +78,27 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "manage-users",
-                element: <PrivateRoute><ManageUsers /></PrivateRoute>
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             },
             {
                 path: "add-meal",
-                element: <PrivateRoute><AddMeal /></PrivateRoute>
+                element: <AdminRoute><AddMeal /></AdminRoute>
             },
             {
                 path: "all-meals",
-                element: <PrivateRoute><AllMeals /></PrivateRoute>
+                element: <AdminRoute><AllMeals /></AdminRoute>
             },
             {
                 path: "all-reviews",
-                element: <PrivateRoute><AllReviews /></PrivateRoute>
+                element: <AdminRoute><AllReviews /></AdminRoute>
             },
             {
                 path: "serve-meals",
-                element: <PrivateRoute><ServeMeals /></PrivateRoute>
+                element: <AdminRoute><ServeMeals /></AdminRoute>
             },
             {
                 path: "upcoming-meals",
-                element: <PrivateRoute><UpcomingMeals /></PrivateRoute>
+                element: <AdminRoute><UpcomingMeals /></AdminRoute>
             },
             {
                 index: true,
@@ -117,7 +118,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "upcoming-meals-admin",
-                element: <PrivateRoute><UpcomingMealsAdmin /></PrivateRoute>
+                element: <AdminRoute><UpcomingMealsAdmin /></AdminRoute>
             },
         ]
     }

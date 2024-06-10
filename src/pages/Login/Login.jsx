@@ -4,7 +4,11 @@ import useAuth from "../../hooks/useAuth"
 import toast from "react-hot-toast"
 import axios from "axios"
 
+import googleLogo from '../../assets/images/googleLogo.png'
+
 const Login = () => {
+    const { user, googleLogIn } = useAuth();
+    const userEmail = user?.email
     const navigate = useNavigate()
     const { signInUser } = useAuth()
 
@@ -26,6 +30,18 @@ const Login = () => {
                     .then(res => console.log(res.data))
                 console.log(result.user)
             })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleLogIn()
+            .then(result => {
+                console.log(result.user)
+                axios.post(`http://localhost:4000/jwt`, userEmail, {
+                    withCredentials: true
+                })
+                    .then(res => console.log(res.data))
+            })
+            .catch(err => console.log(err.message))
     }
 
     return (
@@ -55,8 +71,15 @@ const Login = () => {
                         <button className="btn bg-[#CA301B] hover:bg-[#ff3535] text-white">Login</button>
                     </div>
 
-                    <p className="text-center">New user? <Link to={'/register'} className="font-bold hover:text-red-600">Register Now</Link></p>
                 </form>
+
+
+                {/* <div className="form-control px-8">
+                    <button className="btn btn-ghost bg-neutral-300 mb-3" onClick={handleGoogleSignIn}> <img src={googleLogo} className="w-5" alt="" /> Login with google</button>
+                </div> */}
+
+                <p className="text-center mb-10">New user? <Link to={'/register'} className="font-bold hover:text-red-600">Register Now</Link></p>
+
             </div>
         </div>
     )
