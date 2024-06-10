@@ -48,7 +48,11 @@ const AllReviewsDataRow = ({ review, refetch }) => {
                     </div>
                 </div>
             </td>
-            <td>{review?.title}</td>
+            <td>
+                {review?.title}
+                <br />
+                <span className="badge badge-ghost badge-sm">{review?.name}</span>
+            </td>
             <td>
                 {review?.likes}
             </td>
