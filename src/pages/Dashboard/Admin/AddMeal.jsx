@@ -59,7 +59,7 @@ const AddMeal = () => {
 
   return (
     <div>
-      <div className="card shrink-0 w-full max-w-4xl shadow-2xl bg-base-100 border mx-auto">
+      <div className="card shrink-0 w-full max-w-4xl shadow-2xl bg-base-100 border mx-auto relative top-20 md:top-0">
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
           <h1 className='text-2xl font-bold'>Add Meal</h1>
           <div className="form-control">

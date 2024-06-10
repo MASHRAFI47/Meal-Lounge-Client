@@ -36,7 +36,6 @@ const UpcomingMealCard = ({ meal, refetch }) => {
             return data
         }
     })
-    console.log(userData)
 
 
     const filteredLikes = likes.filter(like => like.email == user?.email);
@@ -44,6 +43,7 @@ const UpcomingMealCard = ({ meal, refetch }) => {
 
     const { mutateAsync } = useMutation({
         mutationFn: async (meal) => {
+            console.log(meal)
             // const filteredMealItem = filteredLikes.find(item => item.title == meal.title);
             // if(filteredMealItem) {
             //     if(filteredLikes?.email == user?.email) {
@@ -54,7 +54,8 @@ const UpcomingMealCard = ({ meal, refetch }) => {
             //     }
             // }
             // console.log(filteredMealItem)
-            if (filteredLikes) return
+            
+            // if (filteredLikes) return
             const { data } = await axiosCommon.patch(`/like-meal/${meal?._id}`, mealData)
             return data
         },
@@ -79,10 +80,9 @@ const UpcomingMealCard = ({ meal, refetch }) => {
 
     const handleLikeButton = (meal) => {
         if (userData?.membership == "platinum" || userData?.membership == "gold" || userData?.membership == "silver") {
-            // console.log(meal)
             mutateAsync(meal)
 
-            fetch(`http://localhost:4000/likes/${user?.email}`, {
+            fetch(`https://meal-lounge-server.vercel.app/likes/${user?.email}`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

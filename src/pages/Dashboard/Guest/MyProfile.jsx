@@ -18,7 +18,7 @@ const MyProfile = () => {
   if(loading, isLoading) return <LoadingSpinner />
 
   return (
-    <div className="md:mt-20">
+    <div className="md:mt-20 relative top-20 md:top-0">
       <div className="card md:w-96 bg-base-100 shadow-xl mx-auto border">
         <figure><img className="rounded-full p-5 w-52" src={user?.photoURL} alt="Shoes" /></figure>
         <div className="card-body font-semibold">

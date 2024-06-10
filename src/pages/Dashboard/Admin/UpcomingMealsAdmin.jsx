@@ -21,7 +21,7 @@ const UpcomingMealsAdmin = () => {
 
         const mealData = { ...data, image: imageUrl, likes: likeInt }
 
-        fetch(`http://localhost:4000/meals`, {
+        fetch(`https://meal-lounge-server.vercel.app/meals`, {
             credentials: 'include',
             method: "POST",
             headers: {
@@ -51,7 +51,7 @@ const UpcomingMealsAdmin = () => {
     if (isLoading) return <LoadingSpinner />
 
     return (
-        <div>
+        <div className="relative top-20 md:top-0">
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

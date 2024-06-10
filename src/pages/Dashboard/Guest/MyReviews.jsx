@@ -21,7 +21,7 @@ const MyReviews = () => {
 
 
   return (
-    <div>
+    <div className="relative top-20 md:top-0">
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

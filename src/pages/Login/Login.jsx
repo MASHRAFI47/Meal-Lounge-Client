@@ -24,7 +24,7 @@ const Login = () => {
                 toast.success("Sign In Successful")
                 navigate('/')
                 const user = { email }
-                axios.post('http://localhost:4000/jwt', user, {
+                axios.post('https://meal-lounge-server.vercel.app/jwt', user, {
                     withCredentials: true
                 })
                     .then(res => console.log(res.data))
@@ -36,7 +36,7 @@ const Login = () => {
         googleLogIn()
             .then(result => {
                 console.log(result.user)
-                axios.post(`http://localhost:4000/jwt`, userEmail, {
+                axios.post(`https://meal-lounge-server.vercel.app/jwt`, userEmail, {
                     withCredentials: true
                 })
                     .then(res => console.log(res.data))

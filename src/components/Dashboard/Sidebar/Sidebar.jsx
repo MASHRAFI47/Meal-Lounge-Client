@@ -56,6 +56,7 @@ const Sidebar = () => {
                 <div className="bg-[#CA301B] min-h-screen">
                     <Link to={'/'}><img src={logo} className="w-24 mx-auto" alt="" /></Link>
                     {role === 'admin' && <AdminMenu />}
+                    {role === 'guest' && <GuestMenu />}
                 </div>
             </Drawer>
         </div>

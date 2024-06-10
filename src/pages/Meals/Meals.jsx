@@ -6,7 +6,7 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner"
 
 
 // const getArticles = async ({ pageParam = 0 }) => {
-//     const res = await fetch(`http://localhost:4000/meals?limit=4&offset=${pageParam}`);
+//     const res = await fetch(`https://meal-lounge-server.vercel.app/meals?limit=4&offset=${pageParam}`);
 //     const data = await res.json();
 
 //     return { ...data, prevOffset: pageParam }

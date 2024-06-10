@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = async () => {
         setLoading(true)
-        await axios(`http://localhost:4000/logout`, {
+        await axios(`https://meal-lounge-server.vercel.app/logout`, {
             withCredentials: true
         })
         return signOut(auth)

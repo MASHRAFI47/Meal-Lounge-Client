@@ -68,7 +68,7 @@ const MealDetails = () => {
         const { _id, ...destUser } = userInfo;
         // eslint-disable-next-line no-unused-vars
         const { _id: uid, ...destMeal } = meal
-        fetch(`http://localhost:4000/reviews`, {
+        fetch(`https://meal-lounge-server.vercel.app/reviews`, {
             credentials: 'include',
             method: "POST",
             headers: {

@@ -30,7 +30,7 @@ const MyReviewsDataRow = ({ review, refetch }) => {
     })
 
     const onSubmit = data => {
-        fetch(`http://localhost:4000/reviews/${review?._id}`, {
+        fetch(`https://meal-lounge-server.vercel.app/reviews/${review?._id}`, {
             credentials: "include",
             method: "PATCH",
             headers: {
