@@ -3,6 +3,12 @@
 ## Live Link: Here goes the website live link: [Meal_Lounge](https://meal-lounge.web.app/)
 
 
+Technologies Used: Tailwind, Firebase, ReactJS, NodeJS, ExpressJS, MongoDB
+
+
+About the web: 
+
+
  - You can choose your desired meals
  - Upcoming meals where users can like the meals (10 likes will automatically add it to the meals section)
  - You can view the meal details
@@ -23,4 +29,13 @@
     - Requested Meal: User can track his meal and also cancel from here
     - My Reviews: User can update their review, delete and view from here
     - Payment History: User can see total payment history from this page
+
+
+
+ To run this locally in your system => 
+- Click the Code button and copy the URL
+- In your cmd/terminal, type git clone (paste the copied URL)
+- Open the cloned folder using cmd/terminal
+- Type npm install and hit enter
+- Type this command: npm run dev (if you have nodejs installed in your system)
 
